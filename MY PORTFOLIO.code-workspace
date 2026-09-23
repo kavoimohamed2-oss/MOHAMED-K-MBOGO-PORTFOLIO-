@@ -1,8 +1,249 @@
-{
-	"folders": [
-		{
-			"path": "."
-		}
-	],
-	"settings": {}
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mohamed Kavoi Mbogo — Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#132030;
+    --navy:#1c2e45;
+    --paper:#ffffff;
+    --panel:#f4f6f8;
+    --line:#e1e5ea;
+    --muted:#5b6773;
+    --teal:#2c6e63;
+    --teal-deep:#204f47;
+  }
+  :root:not([data-theme="light"]) { }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#e7ebef; --navy:#dbe4ee; --paper:#10161f; --panel:#161d27;
+      --line:#2a333f; --muted:#9aa6b2; --teal:#57b6a4; --teal-deep:#6fd0bd;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#e7ebef; --navy:#dbe4ee; --paper:#10161f; --panel:#161d27;
+    --line:#2a333f; --muted:#9aa6b2; --teal:#57b6a4; --teal-deep:#6fd0bd;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth; scroll-padding-top:calc(76px + env(safe-area-inset-top,0px));}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:'Inter',sans-serif; line-height:1.6;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  h1,h2,h3{font-family:'Source Serif 4',serif; font-weight:600; margin:0; color:var(--navy);}
+  a{color:inherit;}
+  .wrap{max-width:760px; margin:0 auto; padding:0 28px;}
+
+  header.site{
+    position:sticky; top:0; z-index:10;
+    background:color-mix(in srgb, var(--paper) 88%, transparent);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  .nav{display:flex; align-items:center; justify-content:space-between; padding:16px 28px; max-width:760px; margin:0 auto;}
+  .nav .name{font-family:'Source Serif 4',serif; font-weight:600; font-size:1.05rem; color:var(--navy);}
+  .nav ul{list-style:none; display:flex; gap:22px; margin:0; padding:0;}
+  .nav a{text-decoration:none; font-size:0.92rem; color:var(--muted); transition:color .15s;}
+  .nav a:hover{color:var(--teal-deep);}
+
+  section{padding:72px 0;}
+  section + section{border-top:1px solid var(--line);}
+
+  .hero{padding-top:88px; padding-bottom:80px;}
+  .hero .role{color:var(--teal-deep); font-size:1.05rem; margin-bottom:14px;}
+  .hero h1{font-size:2.6rem; line-height:1.15; max-width:14ch;}
+  .hero p.lede{margin-top:22px; max-width:52ch; color:var(--muted); font-size:1.08rem;}
+  .hero .actions{margin-top:32px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; padding:11px 22px; border-radius:2px;
+    text-decoration:none; font-size:0.95rem; font-weight:500;
+    border:1px solid var(--navy); color:var(--navy);
+    transition:background .15s, color .15s;
+  }
+  .btn.primary{background:var(--navy); color:var(--paper); border-color:var(--navy);}
+  .btn.primary:hover{background:var(--teal-deep); border-color:var(--teal-deep);}
+  .btn:not(.primary):hover{background:var(--panel);}
+
+  h2.section-title{font-size:1.55rem; margin-bottom:28px;}
+
+  .about p{max-width:60ch; color:var(--ink);}
+  .about p + p{margin-top:16px;}
+
+  .edu-item{display:grid; grid-template-columns:1fr; gap:4px; padding:18px 0; border-top:1px solid var(--line);}
+  .edu-item:first-of-type{border-top:none;}
+  .edu-item .row{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .edu-item .degree{font-weight:600; color:var(--navy);}
+  .edu-item .when{color:var(--muted); font-size:0.92rem; white-space:nowrap;}
+  .edu-item .school{color:var(--muted); font-size:0.95rem;}
+
+  .skills-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:28px 32px;}
+  .skills-grid h3{font-size:0.95rem; font-family:'Inter',sans-serif; font-weight:600; color:var(--teal-deep); margin-bottom:10px;}
+  .skills-grid ul{margin:0; padding:0; list-style:none; color:var(--muted); font-size:0.95rem;}
+  .skills-grid li{padding:4px 0;}
+
+  .projects{display:flex; flex-direction:column; gap:22px;}
+  .project{border:1px solid var(--line); border-radius:2px; padding:22px 24px; background:var(--panel);}
+  .project h3{font-family:'Inter',sans-serif; font-size:1.05rem; font-weight:600; margin-bottom:8px; color:var(--navy);}
+  .project p{margin:0; color:var(--muted); font-size:0.95rem;}
+  .project .tags{margin-top:14px; display:flex; gap:8px; flex-wrap:wrap;}
+  .project .tags span{font-size:0.78rem; color:var(--teal-deep); border:1px solid var(--line); padding:3px 9px; border-radius:2px;}
+
+  .contact p{max-width:52ch; color:var(--muted);}
+  .contact-list{margin-top:24px; display:flex; flex-direction:column; gap:10px;}
+  .contact-list a{text-decoration:none; color:var(--navy); font-weight:500; border-bottom:1px solid var(--line); padding-bottom:2px;}
+  .contact-list a:hover{color:var(--teal-deep); border-color:var(--teal-deep);}
+
+  footer{padding:32px 0; color:var(--muted); font-size:0.85rem;}
+
+  @media (max-width:620px){
+    .nav ul{gap:14px;}
+    .hero h1{font-size:2.1rem;}
+    .skills-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <span class="name">Mohamed Kavoi Mbogo</span>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section class="hero" id="top">
+    <div class="role">IT Professional &amp; Software Engineering Student</div>
+    <h1>Building reliable software, from idea to deployment.</h1>
+    <p class="lede">I'm Mohamed Kavoi Mbogo, currently studying towards a Bachelor of Science in Information Technology, specialising in software engineering. I bring hands-on experience in web development and computer support, along with a steady, detail-driven approach to solving problems with technology.</p>
+    <div class="actions">
+      <a href="#contact" class="btn primary">Get in touch</a>
+      <a href="#projects" class="btn">View my work</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2 class="section-title">About</h2>
+    <div class="about">
+      <p>I'm working towards a Bachelor of Science in Information Technology, specialising in Software Engineering, alongside practical experience in computer packages, web development, and computer repair and maintenance.</p>
+      <p>I'm a motivated and hardworking individual who values professionalism, honesty, and delivering quality work. I'm comfortable working under minimum supervision, enjoy teamwork, and bring good time management to everything I take on.</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-title">Education</h2>
+    <div class="edu-item">
+      <div class="row">
+        <span class="degree">Bachelor of Science in Information Technology (in progress)</span>
+        <span class="when">Since Aug 2025</span>
+      </div>
+      <span class="school">Specialisation: Software Engineering — Tom Mboya University</span>
+    </div>
+    <div class="edu-item">
+      <div class="row">
+        <span class="degree">Certificate of Computer Packages</span>
+        <span class="when">Jan–Apr 2025</span>
+      </div>
+      <span class="school">Nice Computer Centre</span>
+    </div>
+    <div class="edu-item">
+      <div class="row">
+        <span class="degree">Kenya Certificate of Secondary Education (KCSE)</span>
+        <span class="when">2021–2024</span>
+      </div>
+      <span class="school">Nguviu Boys High School</span>
+    </div>
+    <div class="edu-item">
+      <div class="row">
+        <span class="degree">Kenya Certificate of Primary Education (KCPE)</span>
+        <span class="when">2016–2020</span>
+      </div>
+      <span class="school">Silver Stream Primary School</span>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-grid">
+      <div>
+        <h3>Technical</h3>
+        <ul>
+          <li>Web development (web pages &amp; styling)</li>
+          <li>Basic computer literacy (MS Office, internet use)</li>
+          <li>Computer repair and maintenance</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Working style</h3>
+        <ul>
+          <li>Ability to work under minimum supervision</li>
+          <li>Time management and responsibility</li>
+          <li>Honest, disciplined, and hardworking</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Interpersonal</h3>
+        <ul>
+          <li>Customer service</li>
+          <li>Communication and interpersonal skills</li>
+          <li>Teamwork and cooperation</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Interests</h3>
+        <ul>
+          <li>Reading and learning new skills</li>
+          <li>Technology and innovation</li>
+          <li>Community activities</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="project">
+        <h3>TMU University Website</h3>
+        <p>My first web development project — a university website built with HTML and CSS as part of learning the fundamentals of web development.</p>
+        <div class="tags"><span>HTML</span><span>CSS</span></div>
+        <div class="tags" style="margin-top:8px;"><a href="https://github.com/kavoimohamed2-oss/TMU-University-websites-" target="_blank" rel="noopener" style="font-size:0.85rem; color:var(--teal-deep); text-decoration:none; border-bottom:1px solid var(--line);">View on GitHub →</a></div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <p>Based in Embu, Kenya. Feel free to reach out — whether it's about opportunities, collaboration, or just to talk technology.</p>
+    <div class="contact-list">
+      <a href="mailto:kavoimohamed52@gmail.com">kavoimohamed52@gmail.com</a>
+      <a href="tel:+254759314985">+254 759 314 985</a>
+      <a href="https://www.linkedin.com/in/mohamed-kavoi-9a90ba399" target="_blank" rel="noopener">linkedin.com/in/mohamed-kavoi</a>
+      <a href="https://github.com/kavoimohamed2-oss/TMU-University-websites-" target="_blank" rel="noopener">github.com/kavoimohamed2-oss</a>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2026 Mohamed Kavoi Mbogo.
+  </footer>
+
+</main>
+
+</body>
+</html>
